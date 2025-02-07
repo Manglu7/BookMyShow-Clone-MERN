@@ -54,7 +54,26 @@ const login = async (req, res) => {
     }
 }
 
+const getCurrentUser = async (req, res) => {
+    const user = await User.findById(req.body.userId).select('-password');
+    if(!user){
+        res.send({
+            success: false,
+            data: null,
+            message: 'User not found'
+        })
+    }
+    else{
+        res.send({
+            success: true,
+            data: user,
+            message: 'You are authorized to go the protected route'
+        })
+    }
+}
+
 module.exports = {
     register,
-    login
+    login,
+    getCurrentUser
 }

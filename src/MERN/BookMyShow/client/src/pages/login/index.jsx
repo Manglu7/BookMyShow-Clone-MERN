@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Button, Form, Input, message} from "antd";
 import {Link, useNavigate} from "react-router-dom";
 import {LoginUser} from "../../api/users";
@@ -11,6 +11,7 @@ const Login = () => {
             const response = await LoginUser(values);
             if(response.data.success){
                 message.success(response.data.message)
+                localStorage.setItem("token", response.data.data);
                 navigate('/')
             }
             else{
@@ -22,6 +23,11 @@ const Login = () => {
         }
 
     }
+    useEffect(()=>{
+        if(localStorage.getItem("token")){
+            navigate("/");
+        }
+    },[]);
     return (
         <>
             <main className='App-header'>
