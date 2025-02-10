@@ -2,7 +2,8 @@ import {axiosInstance} from "./index";
 
 export const RegisterUser = async (data) => {
     try{
-        return await axiosInstance.post("/api/users/register", data);
+        const response =  await axiosInstance.post("/api/users/register", data);
+        return response.data;
     }
     catch(error){
         console.log(error);
@@ -11,7 +12,8 @@ export const RegisterUser = async (data) => {
 
 export const LoginUser = async (data) => {
     try {
-        return await axiosInstance.post("/api/users/login", data);
+        const response =  await axiosInstance.post("/api/users/login", data);
+        return response.data;
     }
     catch(error){
         console.log(error);
@@ -20,9 +22,15 @@ export const LoginUser = async (data) => {
 
 export const getCurrentUser = async () => {
     try{
-        return await axiosInstance.get("/api/users/get-current-user");
+        const response =  await axiosInstance.get("/api/users/get-current-user");
+        return response.data;
     }
     catch(error){
         console.log(error);
+        return {
+            success: false,
+            data: null,
+            message: 'User not found'
+        }
     }
 }

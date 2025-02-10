@@ -9,13 +9,13 @@ const Login = () => {
         console.log(values);
         try{
             const response = await LoginUser(values);
-            if(response.data.success){
-                message.success(response.data.message)
-                localStorage.setItem("token", response.data.data);
+            if(response.success){
+                message.success(response.message)
+                localStorage.setItem("token", response.data);
                 navigate('/')
             }
             else{
-                message.error(response.data.message)
+                message.error(response.message)
             }
         }
         catch(error){

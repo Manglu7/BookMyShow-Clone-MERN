@@ -127,6 +127,25 @@ function MovieList() {
                     Add Movie
                 </Button>
                 <Table dataSource={FakeMovies} columns={tableHeading}/>
+                {isModalOpen && (
+                    <MovieForm
+                        isModalOpen={isModalOpen}
+                        setIsModalOpen={setIsModalOpen}
+                        formType={formType}
+                        getData={getData}
+                        selectedMovie={selectedMovie}
+                        setSelectedMovie={setSelectedMovie}
+                    />
+                )}
+                {isDeleteModalOpen && (
+                    <DeleteMovieModal
+                        isDeleteModalOpen={isDeleteModalOpen}
+                        setIsDeleteModalOpen={setIsDeleteModalOpen}
+                        getData={getData}
+                        selectedMovie={selectedMovie}
+                        setSelectedMovie={setSelectedMovie}
+                    />
+                )}
             </div>
         </>
     )

@@ -48,12 +48,12 @@ const {Header, Footer, Sider, Content} = Layout;
         try{
             dispatch(ShowLoading())
             const response = await getCurrentUser();
-            if(!response.data.success){
-                message.error(response.data.message);
+            if(!response.success){
+                message.error(response.message);
                 navigate("/login");
             }
             console.log(response);
-            dispatch(setUser(response.data.data))
+            dispatch(setUser(response.data))
             dispatch(HideLoading());
         }
         catch(error){
